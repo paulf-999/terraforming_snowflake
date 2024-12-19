@@ -6,7 +6,7 @@ set -e
 # Check if the .env file exists before exporting variables
 if [ -f .env ]; then
     echo && echo "Loading environment variables from .env file..."
-    export $(grep -v '^#' .env | xargs)
+    export "$(grep -v '^#' .env | xargs)"
 else
     echo "Error: .env file not found."
     echo "Rename the file '.env_template.j2' to '.env'"
