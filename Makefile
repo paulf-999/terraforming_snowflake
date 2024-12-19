@@ -1,55 +1,40 @@
 SHELL = /bin/sh
 
-#================================================================
-# Usage
-#================================================================
-# make installations	# install the package for the first time, managing dependencies & performing a housekeeping cleanup too
-# make deps		# just install the dependencies
-# make install		# perform the end-to-end install
-# make clean		# perform a housekeeping cleanup
+.EXPORT_ALL_VARIABLES:
 
+# Include child Makefiles
+include src/make/terminal_colour_formatting.mk
+include src/make/setup.mk
 
+include .env
 
-.EXPORT_ALL_VARIABLES: validate_user_ip
+# Targets
+all: deps install clean
 
-CONFIG_FILE := config.yaml
-# the 2 vars below are just for formatting CLI message output
-YELLOW := \033[0;33m
-COLOUR_OFF := \033[0m
+deps: validate_env_vars
+	@echo && echo "${INFO}Called makefile target 'deps'. Create virtualenv with required Python libs.${COLOUR_OFF}" && echo
+	@echo "${DEBUG}1. Install Terraform${COLOUR_OFF}"
+	@./src/sh/install_terraform.sh
+	@echo && echo "${DEBUG}2. Create the required Snowflake user 'SVC_USER' and role 'FUNC_TERRAFORM_ROLE'${COLOUR_OFF}" && echo
+	@# see src/make/setup.mk for the target 'create_snowflake_svc_user_and_terraform_role'
+	@make -s create_snowflake_svc_user_and_terraform_role
 
-installations: deps install clean
+install:
+	@echo "${INFO}\nCalled makefile target 'install'. Run the setup & install targets.\n${COLOUR_OFF}"
+	@echo "${DEBUG} Create Terraform File/Folder Structure${COLOUR_OFF}"
+	@terraform init
 
-deps: get_ips
-	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_OFF}"
-	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@virtualenv -p python3 venv; \
-	source venv/bin/activate; \
-	pip3 install -r requirements.txt; \
+run:
+	@echo "${INFO}\nCalled makefile target 'run'. Launch service.${COLOUR_OFF}\n"
 
-install: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+test:
+	@echo "${INFO}\nCalled makefile target 'test'. Perform any required tests.${COLOUR_OFF}\n"
 
 clean:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo "${INFO}\nCalled makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}\n"
 
-#############################################################################################
-# Setup/validation targets: 'get_ips' & 'validate_user_ip'
-#############################################################################################
-get_ips:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'get_ips'. Get input args from config.yaml.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-	$(eval CURRENT_DIR=$(shell pwd))
-	$(eval ENV=$(shell yq -r '.general_params.env | select( . != null )' ${CONFIG_FILE}))
+# Phony targets
+.PHONY: all deps install run test clean
 
-validate_user_ip: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-	# INFO: Verify the user has provided a value for the key 'env' in ip/config.yaml
-	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
+# .PHONY tells Make that these targets don't represent files
+# This prevents conflicts with any files named "all" or "clean"

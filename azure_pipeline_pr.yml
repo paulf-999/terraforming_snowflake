@@ -1,0 +1,60 @@
+---
+variables:
+    AZURE_KEY_VAULT_NAME: dmt-uat-uscn-oos-kv  # Azure Key Vault name
+
+# Include all branches for PR validation
+pr:
+    autoCancel: true  # Cancel the CICD build if a newer commit comes in
+    branches:
+        include:
+            - '*'
+    paths:
+        include: # Only trigger the CI job when changes are made to the following directories/files
+            - terraform/*
+
+# The agent pool (i.e., compute resource) used to run the CICD pipeline jobs
+pool: onprem-linux-elksdx
+
+# Individual validation jobs for each environment
+jobs:
+    - job: validate_dev_environment
+      displayName: DEV - Validate Terraform
+      condition: eq(variables['Build.Reason'], 'PullRequest') # only run when a PR (Pull Request) is raised
+      steps:
+          # Template for Terraform validation and planning in the dev environment
+          - template: src/cicd/pipelines/pr_pipeline_terraform_validate_and_plan.yml
+            parameters:
+                env_name: dev
+
+    - job: validate_uat_environment
+      displayName: UAT - Validate Terraform
+      condition: eq(variables['Build.Reason'], 'PullRequest') # only run when a PR (Pull Request) is raised
+      steps:
+          # Template for Terraform validation and planning in the uat environment
+          - template: src/cicd/pipelines/pr_pipeline_terraform_validate_and_plan.yml
+            parameters:
+                env_name: uat
+
+    - job: validate_cicd_environment
+      displayName: CICD - Validate Terraform
+      condition: eq(variables['Build.Reason'], 'PullRequest') # only run when a PR (Pull Request) is raised
+      steps:
+          - template: src/cicd/pipelines/pr_pipeline_terraform_validate_and_plan.yml
+            parameters:
+                env_name: cicd
+
+    - job: validate_prod_environment
+      displayName: PROD - Validate Terraform
+      condition: eq(variables['Build.Reason'], 'PullRequest') # only run when a PR (Pull Request) is raised
+      steps:
+          - template: src/cicd/pipelines/pr_pipeline_terraform_validate_and_plan.yml
+            parameters:
+                env_name: prod
+
+    - job: validate_global_environment
+      displayName: Global - Validate Terraform
+      condition: eq(variables['Build.Reason'], 'PullRequest') # only run when a PR (Pull Request) is raised
+      steps:
+          - template: src/cicd/pipelines/pr_pipeline_terraform_validate_and_plan.yml
+            parameters:
+                env_name: global
