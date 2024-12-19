@@ -1,6 +1,6 @@
 ---
 variables:
-    AZURE_KEY_VAULT_NAME: dmt-uat-uscn-oos-kv  # Azure Key Vault name
+    AZURE_KEY_VAULT_NAME: TODO-UPDATE-ME  # Azure Key Vault name
 
 # Include all branches for PR validation
 pr:
@@ -13,7 +13,7 @@ pr:
             - terraform/*
 
 # The agent pool (i.e., compute resource) used to run the CICD pipeline jobs
-pool: onprem-linux-elksdx
+pool: TODO-UPDATE-ME
 
 # Individual validation jobs for each environment
 jobs:

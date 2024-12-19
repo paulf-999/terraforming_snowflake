@@ -1,6 +1,6 @@
 ---
 variables:
-    AZURE_KEY_VAULT_NAME: dmt-uat-uscn-oos-kv  # Azure Key Vault name
+    AZURE_KEY_VAULT_NAME: TODO-UPDATE-ME  # Azure Key Vault name
 
 # Trigger the pipeline on changes to specific paths in the main branch
 trigger:
@@ -22,7 +22,7 @@ pr:
             - '*'
 
 # The agent pool (i.e., compute resource) used to run the pipeline jobs
-pool: onprem-linux-elksdx
+pool: TODO-UPDATE-ME
 
 # Sequential apply jobs for each environment
 jobs:
