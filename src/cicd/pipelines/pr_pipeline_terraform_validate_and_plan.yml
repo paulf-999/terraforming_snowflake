@@ -10,7 +10,7 @@ steps:
     # Step 2: Retrieve secrets from AZ Key Vault
     - task: AzureKeyVault@2
       inputs:
-          azureSubscription: pyrc-uat-oos-sb
+          azureSubscription: TODO-UPDATE
           KeyVaultName: $(AZURE_KEY_VAULT_NAME)
           SecretsFilter: '*'
           RunAsPreJob: true
@@ -31,10 +31,10 @@ steps:
           filePath: src/cicd/scripts/common/terraform_plan.sh
           arguments: ${{ parameters.env_name }}
       env:
-          TF_VAR_SNOWFLAKE_ACCOUNT_NAME: $(SNOWFLAKE-ACCOUNT-NAME-SHORT)
-          TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: $(SNOWFLAKE-ORGANISATION-NAME)
-          TF_VAR_SNOWFLAKE_WAREHOUSE: $(SNOWFLAKE-WAREHOUSE-DEFAULT)
-          TF_VAR_SNOWFLAKE_USER: $(SNOWFLAKE-USER-NAME-SERVICE-ACCOUNT-CICD)
-          TF_VAR_SNOWFLAKE_PASSWORD: $(SNOWFLAKE-USER-PASSWORD-SERVICE-ACCOUNT-CICD)
-          TF_VAR_SNOWFLAKE_ROLE: $(SNOWFLAKE-ROLE-TERRAFORM-CICD)
+          TF_VAR_SNOWFLAKE_ACCOUNT_NAME: TODO-UPDATE
+          TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: TODO-UPDATE
+          TF_VAR_SNOWFLAKE_WAREHOUSE: TODO-UPDATE
+          TF_VAR_SNOWFLAKE_USER: TODO-UPDATE
+          TF_VAR_SNOWFLAKE_PASSWORD: TODO-UPDATE
+          TF_VAR_SNOWFLAKE_ROLE: TODO-UPDATE
       displayName: Terraform Plan
