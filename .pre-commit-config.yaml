@@ -55,6 +55,12 @@ repos:
             name: General checks - check string case conflicts
           - id: detect-private-key # checks for the existence of private keys.
             name: General checks - detect private keys
+    # Shell script validation hook - ensures shell scripts conform to shellcheck
+    - repo: https://github.com/jumanjihouse/pre-commit-hooks
+      rev: 3.0.0
+      hooks:
+          - id: shellcheck # Ensure shell scripts conform to shellcheck
+            name: Shell script checks - linter (using shellcheck)
     # - repo: https://github.com/gruntwork-io/pre-commit
     #   rev: v0.1.23
     #   hooks:

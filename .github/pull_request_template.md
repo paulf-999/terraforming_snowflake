@@ -2,21 +2,27 @@
 
 [Summary of the change here.]
 
-## :hammer_and_wrench: Type of Change
+## :clipboard: (Optional) Additional Details
+
+[If needed, provide further context or details.]
+
+## :hammer_and_wrench: Type of PR Change
 
 Choose one:
 
-- [ ] **New Feature**: A new enhancement/feature.
-- [ ] **Trivial New Feature**: A *trivial* new feature.
+- [ ] **Feature**: A new feature or a change to an existing feature.
+- [ ] **Trivial change**: A *minor* change with little/no impact.
 - [ ] **Bugfix**: A *minor* bug or issue.
-- [ ] **Documentation**: Updates or adds documentation.
+- [ ] **Refactoring**: Restructuring existing code, or tidying up the git repo structure.
 - [ ] **Housekeeping**: Tidying up code/content within the git repo.
+- [ ] **Documentation**: Updates or adds documentation.
 
 ## :fire: Critical Changes
 
-- [ ] **Hotfix**: Addresses a critical bug fix.
 - [ ] **Release**: A major new code release.
+- [ ] **Hotfix**: Addresses a critical bug fix.
 
-## :clipboard: Additional Details (Optional)
+## :bulb: Best Practices
 
-[If needed, provide further context or details.]
+- Keep the PR as small as possible, dividing it into different PRs if possible
+- Explain reasons behind changes that might not be obvious or seem complex
