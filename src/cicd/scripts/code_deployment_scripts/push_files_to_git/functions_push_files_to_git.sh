@@ -6,8 +6,8 @@
 # Import utility functions
 source src/sh/shell_utilities.sh
 
-GIT_BOT_EMAIL="git-bot@payroc.com"
-GIT_BOT_USERNAME="gitbot-dmt-payroc"
+GIT_BOT_EMAIL="TODO - update me"
+GIT_BOT_USERNAME="gitbot-UPDATE-ME"
 
 #=======================================================================
 # Functions

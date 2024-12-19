@@ -32,9 +32,9 @@ fi
 # Set variables
 SOURCE_GIT_BRANCH_NAME=${1}
 TARGET_ENVIRONMENT=${2}
-GIT_REPO="payroc/dmt-scripts-snowflake.git"
-GIT_BOT_EMAIL="git-bot@payroc.com"
-GIT_BOT_USERNAME="gitbot-dmt-payroc"
+GIT_REPO="TODO - update me"
+GIT_BOT_EMAIL="TODO - update me"
+GIT_BOT_USERNAME="gitbot-UPDATE-ME"
 
 # Target state files
 TF_STATE_FILE="terraform/environments/${TARGET_ENVIRONMENT}/terraform.tfstate"

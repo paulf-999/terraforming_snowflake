@@ -28,9 +28,9 @@ fi
 
 # Set the source Git branch name from the first argument
 SOURCE_GIT_BRANCH_NAME=${1}
-GIT_REPO="payroc/dmt-scripts-snowflake.git"
-GIT_BOT_EMAIL="git-bot@payroc.com"
-GIT_BOT_USERNAME="gitbot-dmt-payroc"
+GIT_REPO="TODO - update me"
+GIT_BOT_EMAIL="TODO - update me"
+GIT_BOT_USERNAME="gitbot-UPDATE-ME"
 
 # Terraform state files
 GLOBAL_STATE_FILE="terraform/terraform.tfstate"

@@ -26,8 +26,8 @@ fi
 # Variables for the script
 SOURCE_GIT_BRANCH_NAME=$1       # Target Git branch name (e.g., main)
 TARGET_ENVIRONMENT=$2           # Target environment (e.g., dev, uat, prod)
-GIT_BOT_EMAIL="git-bot@payroc.com"    # Email for the Git bot
-GIT_BOT_USERNAME="gitbot-dmt-payroc"  # Username for the Git bot
+GIT_BOT_EMAIL="TODO - update me"
+GIT_BOT_USERNAME="gitbot-UPDATE-ME"
 CHANGES_MADE=false              # Flag to track if any changes were committed
 
 add_and_commit_file() {
