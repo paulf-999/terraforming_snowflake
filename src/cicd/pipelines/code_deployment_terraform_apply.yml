@@ -1,0 +1,62 @@
+---
+steps:
+    # Step 1: Git Checkout
+    - checkout: self # Checkout the branch
+      clean: false
+      displayName: Git checkout
+      persistCredentials: true
+
+    # Step 2: Retrieve secrets from AZ Key Vault
+    - task: AzureKeyVault@2
+      inputs:
+          azureSubscription: pyrc-uat-oos-sb
+          KeyVaultName: $(AZURE_KEY_VAULT_NAME)
+          SecretsFilter: '*'
+          RunAsPreJob: true
+      displayName: Prep Steps - AZ Key Vault - Retrieve Secrets
+
+    # Step 3: Set SOURCE_GIT_BRANCH_NAME Variable
+    - task: Bash@3
+      inputs:
+          targetType: filePath
+          filePath: src/cicd/scripts/code_deployment_scripts/set_git_branch_name_var.sh
+      displayName: Prep Steps - Set variable 'SOURCE_GIT_BRANCH_NAME'
+
+    # Step 4: Create a Terraform Plan using the config, to highlight the proposed changes
+    - task: Bash@3
+      inputs:
+          targetType: filePath
+          filePath: src/cicd/scripts/common/terraform_plan.sh
+          arguments: ${{ parameters.env_name }}
+      env:
+          TF_VAR_SNOWFLAKE_ACCOUNT_NAME: $(SNOWFLAKE-ACCOUNT-NAME-SHORT)
+          TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: $(SNOWFLAKE-ORGANISATION-NAME)
+          TF_VAR_SNOWFLAKE_WAREHOUSE: $(SNOWFLAKE-WAREHOUSE-DEFAULT)
+          TF_VAR_SNOWFLAKE_USER: $(SNOWFLAKE-USER-NAME-SERVICE-ACCOUNT-CICD)
+          TF_VAR_SNOWFLAKE_PASSWORD: $(SNOWFLAKE-USER-PASSWORD-SERVICE-ACCOUNT-CICD)
+          TF_VAR_SNOWFLAKE_ROLE: $(SNOWFLAKE-ROLE-TERRAFORM-CICD)
+      displayName: Terraform Plan
+
+    # Step 5: Perform terraform apply
+    - task: Bash@3
+      inputs:
+          targetType: filePath
+          filePath: src/cicd/scripts/code_deployment_scripts/terraform_apply.sh
+          arguments: ${{ parameters.env_name }}
+      env:
+          TF_VAR_SNOWFLAKE_ACCOUNT_NAME: $(SNOWFLAKE-ACCOUNT-NAME-SHORT)
+          TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: $(SNOWFLAKE-ORGANISATION-NAME)
+          TF_VAR_SNOWFLAKE_WAREHOUSE: $(SNOWFLAKE-WAREHOUSE-DEFAULT)
+          TF_VAR_SNOWFLAKE_USER: $(SNOWFLAKE-USER-NAME-SERVICE-ACCOUNT-CICD)
+          TF_VAR_SNOWFLAKE_PASSWORD: $(SNOWFLAKE-USER-PASSWORD-SERVICE-ACCOUNT-CICD)
+          TF_VAR_SNOWFLAKE_ROLE: $(SNOWFLAKE-ROLE-TERRAFORM-CICD)
+      displayName: Terraform Apply
+
+    # Step 5: Push Terraform state file up to Git
+    - task: Bash@3
+      inputs:
+          filePath: src/cicd/scripts/code_deployment_scripts/push_files_to_git/push_files_to_git.sh
+          arguments: $(SOURCE_GIT_BRANCH_NAME) ${{ parameters.env_name }}
+      env:
+          GIT_PAT_TOKEN: $(GITHUB_PAT)
+      displayName: Push Terraform State File to Git
