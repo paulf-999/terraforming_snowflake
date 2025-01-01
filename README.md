@@ -4,7 +4,7 @@
 
 ## 1. Overview
 
-This repository contains Terraform configuration files used for version controlling Snowflake objects.
+This repository contains Terraform configuration files used to version control Snowflake objects.
 
 > [!NOTE]
 >
