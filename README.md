@@ -24,9 +24,7 @@ Shown below are the different Snowflake object types as described here: [Databas
 
 ![alt text](docs/img/sf_obj_types.png)
 
-This object structure is replicated for each of the account-level objects stored underneath `terraform/environments/<ENV>/`.
-
-As such, identify the type of object you're looking to create and create the Terraform config in the appropriate subdirectory.
+This object structure is replicated underneath `terraform/environments/<ENV>/`.
 
 ---
 
