@@ -1,24 +1,17 @@
-# Terraform - Background
-
 ## 1. What is Terraform?
 
 Terraform is an open-source **Infrastructure as Code (IaC)** tool developed by HashiCorp. It enables users to define, provision, and manage cloud infrastructure across multiple platforms.
 
-### Key Features:
+It's key features include:
+
 - **State Management**: Tracks the current state of your infrastructure to efficiently detect changes and apply updates.
 - **Automation**: Simplifies and automates complex infrastructure management, reducing human error and ensuring consistency.
 
-### Why Use Terraform?
+#### Why Use Terraform?
 
-1. **Version Control**:
-   - Tracks infrastructure changes using a state file.
-   - Enables rollbacks to previous configurations when needed.
-
-2. **Collaboration**:
-   - Facilitates teamwork through shared configuration files.
-
-3. **CI/CD Integration**:
-   - Automates resource provisioning/management as part of a deployment pipeline.
+1. **Version Control**: Tracks infrastructure changes using a state file.
+2. **Collaboration**: Facilitates teamwork through shared configuration files.
+3. **CI/CD Integration**: Automates resource provisioning/management as part of a deployment pipeline.
 
 ---
 
