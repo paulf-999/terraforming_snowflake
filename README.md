@@ -14,7 +14,7 @@ This repository contains Terraform configuration files used for version controll
 
 ## 2. How to Use this Repo
 
-For instructions on how to use this repo, see [docs/how_to_use_this_repo.md](docs/how_to_use_this_repo.md).
+For instructions on how to use this repo, see [How to use this repo](docs/how_to_use_this_repo.md).
 
 ### 2.1. Example: Create a Snowflake Database using Terraform
 
