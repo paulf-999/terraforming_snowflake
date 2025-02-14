@@ -7,14 +7,16 @@ Date: 2023-08-30
 __author__ = "Paul Fry"
 __version__ = "1.0"
 
+import argparse
+import json
+import logging
 import os
 import sys
-import argparse
-import logging
-import json
-import snowflake.connector
+
 import colorlog
 from dotenv import load_dotenv
+
+import snowflake.connector
 
 # Load environment variables from .env file
 load_dotenv()
@@ -51,7 +53,7 @@ def get_logger(log_level=logging.INFO):
 REQUIRED_ENV_VARS = [
     "SNOWFLAKE_USER",
     "SNOWFLAKE_PASSWORD",
-    "SNOWFLAKE_ACCOUNT",
+    "SNOWFLAKE_ACCOUNT_NAME",
     "SNOWFLAKE_WAREHOUSE",
     "SNOWFLAKE_DATABASE",
     "SNOWFLAKE_SCHEMA",
@@ -88,6 +90,8 @@ def execute_sql_from_file(conn, sql_file, input_args=None):
 
         # Split the SQL commands based on the delimiter (e.g., semicolon)
         sql_commands_list = sql_commands.split(";")
+
+        # print(sql_commands_list)
 
         with conn.cursor() as cursor:
             for sql_command in sql_commands_list:
@@ -154,7 +158,7 @@ def main(args):
 
         # Store the Snowflake connection parameters from environment variables
         conn_params = {
-            "account": os.getenv("SNOWFLAKE_ACCOUNT"),
+            "account": os.getenv("SNOWFLAKE_ACCOUNT_NAME"),
             "user": os.getenv("SNOWFLAKE_USER"),
             "password": os.getenv("SNOWFLAKE_PASSWORD"),
             "database": os.getenv("SNOWFLAKE_DATABASE"),

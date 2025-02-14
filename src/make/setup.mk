@@ -18,8 +18,7 @@ install_terraform:
 	@./src/sh/install_terraform.sh
 
 create_snowflake_privileged_roles:
-	@bash src/sql/create_privileged_roles.sql
-	@bash src/sql/grant_privs_to_privileged_roles.sql
+	@python3 ${SNOWFLAKE_CLIENT_SCRIPT} --sql-file src/sql/priviliged_roles/create_privileged_roles.sql
 
 create_snowflake_svc_user_and_terraform_role:
 	@echo && echo "${INFO}Target 'create_snowflake_svc_user_and_terraform_role': create Snowflake service account user & Terraform functional role.${COLOUR_OFF}" && echo
