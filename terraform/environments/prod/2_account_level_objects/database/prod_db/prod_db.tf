@@ -17,6 +17,7 @@ locals {
     "AIRFLOW",
     "DBT_PROJECT_EVALUATOR",
     "DBT_SNOWFLAKE_MONITORING",
+    "NEW_SCHEMA"
     "UTILITIES"
   ]
 }
