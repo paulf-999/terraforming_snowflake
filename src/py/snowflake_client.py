@@ -91,6 +91,8 @@ def execute_sql_from_file(conn, sql_file, input_args=None):
         # Split the SQL commands based on the delimiter (e.g., semicolon)
         sql_commands_list = sql_commands.split(";")
 
+        # print(sql_commands_list)
+
         with conn.cursor() as cursor:
             for sql_command in sql_commands_list:
                 sql_command = sql_command.strip()  # Remove leading/trailing whitespace
