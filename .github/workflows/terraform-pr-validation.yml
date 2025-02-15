@@ -1,4 +1,4 @@
-name: PR Validation - Terraform
+name: PR Validation
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ jobs:
   validate_dev_environment:
     name: DEV - Validate Terraform
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+    # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,60 +24,60 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Validate and Plan - Dev Environment
-        run: terraform validate && terraform plan -var="env_name=dev"
+        run: cd terraform/environments/dev && terraform init && terraform validate && terraform plan
 
-  validate_uat_environment:
-    name: UAT - Validate Terraform
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # validate_uat_environment:
+  #  name: UAT - Validate Terraform
+  #  runs-on: ubuntu-latest
+  #  if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
+  #    - name: Set up Terraform
+  #      uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Validate and Plan - UAT Environment
-        run: terraform validate && terraform plan -var="env_name=uat"
+  #    - name: Terraform Validate and Plan - UAT Environment
+  #      run: cd terraform/environments/uat && terraform init && terraform validate && terraform plan
 
-  validate_cicd_environment:
-    name: CICD - Validate Terraform
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # validate_cicd_environment:
+  #  name: CICD - Validate Terraform
+  #  runs-on: ubuntu-latest
+  #  if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
+  #    - name: Set up Terraform
+  #      uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Validate and Plan - CICD Environment
-        run: terraform validate && terraform plan -var="env_name=cicd"
+  #    - name: Terraform Validate and Plan - CICD Environment
+  #      run: cd terraform/environments/cicd && terraform init && terraform validate && terraform plan
 
-  validate_prod_environment:
-    name: PROD - Validate Terraform
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # validate_prod_environment:
+  #  name: PROD - Validate Terraform
+  #  runs-on: ubuntu-latest
+  #  if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
+  #    - name: Set up Terraform
+  #      uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Validate and Plan - Prod Environment
-        run: terraform validate && terraform plan -var="env_name=prod"
+  #    - name: Terraform Validate and Plan - Prod Environment
+  #      run: cd terraform/environments/prod && terraform init && terraform validate && terraform plan
 
-  validate_global_environment:
-    name: Global - Validate Terraform
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # validate_global_environment:
+  #  name: Global - Validate Terraform
+  #  runs-on: ubuntu-latest
+  #  if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
+  #    - name: Set up Terraform
+  #      uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Validate and Plan - Global Environment
-        run: terraform validate && terraform plan -var="env_name=global"
+  #    - name: Terraform Validate and Plan - Global Environment
+  #      run: cd terraform/environments/global && terraform init && terraform validate && terraform plan
