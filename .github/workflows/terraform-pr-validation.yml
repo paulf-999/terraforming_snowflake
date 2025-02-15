@@ -24,7 +24,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Validate and Plan - Dev Environment
-        run: cd terraform && terraform validate && terraform plan -var="env_name=dev"
+        run: cd terraform/environments/dev && terraform validate && terraform plan -var="env_name=dev"
 
   validate_uat_environment:
     name: UAT - Validate Terraform
@@ -38,7 +38,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Validate and Plan - UAT Environment
-        run: cd terraform && terraform validate && terraform plan -var="env_name=uat"
+        run: cd terraform/environments/uat && terraform validate && terraform plan -var="env_name=uat"
 
   validate_cicd_environment:
     name: CICD - Validate Terraform
@@ -52,7 +52,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Validate and Plan - CICD Environment
-        run: cd terraform && terraform validate && terraform plan -var="env_name=cicd"
+        run: cd terraform/environments/cicd && terraform validate && terraform plan -var="env_name=cicd"
 
   validate_prod_environment:
     name: PROD - Validate Terraform
@@ -66,7 +66,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Validate and Plan - Prod Environment
-        run: cd terraform && terraform validate && terraform plan -var="env_name=prod"
+        run: cd terraform/environments/prod && terraform validate && terraform plan -var="env_name=prod"
 
   validate_global_environment:
     name: Global - Validate Terraform
@@ -80,4 +80,4 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Validate and Plan - Global Environment
-        run: cd terraform && terraform validate && terraform plan -var="env_name=global"
+        run: cd terraform/environments/global && terraform validate && terraform plan -var="env_name=global"
