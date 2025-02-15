@@ -15,7 +15,7 @@ jobs:
   validate_dev_environment:
     name: DEV - Validate Terraform
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+    # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
   validate_uat_environment:
     name: UAT - Validate Terraform
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+    # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -43,7 +43,7 @@ jobs:
   validate_cicd_environment:
     name: CICD - Validate Terraform
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+    # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -57,7 +57,7 @@ jobs:
   validate_prod_environment:
     name: PROD - Validate Terraform
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+    # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -71,7 +71,7 @@ jobs:
   validate_global_environment:
     name: Global - Validate Terraform
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
+    # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
