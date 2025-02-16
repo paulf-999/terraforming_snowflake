@@ -19,8 +19,8 @@ env:
   TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
 
 jobs:
-  apply_dev_environment:
-    name: DEV - Apply Terraform
+  apply_prod_environment:
+    name: PROD - Apply Terraform
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -29,4 +29,4 @@ jobs:
       - name: Terraform Validate & Plan
         uses: ./.github/actions/code_deployment_terraform_apply
         with:
-          environment: dev
+          environment: prod

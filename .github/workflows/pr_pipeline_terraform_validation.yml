@@ -3,7 +3,7 @@ name: PR Validation
 on:
   pull_request:
     paths:
-      - "terraform/environments/dev/**/*"
+      - "terraform/environments/prod/**/*"
 
 env:
   TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ORGANIZATION_NAME }}
