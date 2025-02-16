@@ -9,6 +9,10 @@ runs:
   using: "composite"
   steps:
 
+    - name: Set SOURCE_GIT_BRANCH_NAME Variable
+      run: echo "SOURCE_GIT_BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      shell: bash
+
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
 
@@ -21,5 +25,5 @@ runs:
       shell: bash
 
     - name: Push Terraform State File to Git
-      run: bash ./src/cicd/scripts/code_deployment_scripts/push_files_to_git/push_files_to_git.sh ${{ inputs.environment }}
+      run: bash ./src/cicd/scripts/code_deployment_scripts/push_files_to_git/push_files_to_git.sh ${{ env.SOURCE_GIT_BRANCH_NAME }} ${{ inputs.environment }}
       shell: bash
