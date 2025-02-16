@@ -19,7 +19,6 @@ jobs:
   validate_dev_environment:
     name: DEV - Validate Terraform
     runs-on: ubuntu-latest
-    if: contains(join(github.event.pull_request.changed_files, ','), 'terraform/environments/dev/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
