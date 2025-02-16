@@ -8,7 +8,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
 
@@ -23,11 +22,3 @@ runs:
     - name: Push Terraform State File to Git
       run: bash ./src/cicd/scripts/code_deployment_scripts/push_files_to_git/push_files_to_git.sh ${{ inputs.environment }}
       shell: bash
-
-    - task: Bash@3
-      inputs:
-          filePath: src/cicd/scripts/code_deployment_scripts/push_files_to_git/push_files_to_git.sh
-          arguments: $(SOURCE_GIT_BRANCH_NAME) ${{ parameters.env_name }}
-      env:
-          GIT_PAT_TOKEN: $(GITHUB_PAT)
-      displayName: Push Terraform State File to Git
