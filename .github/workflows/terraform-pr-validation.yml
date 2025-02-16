@@ -21,6 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - uses: ./.github/actions/pr_pipeline_terraform_validate_and_plan
+      - name: Terraform Validate
+        uses: ./.github/actions/pr_pipeline_terraform_validate_and_plan
         with:
           environment: dev
