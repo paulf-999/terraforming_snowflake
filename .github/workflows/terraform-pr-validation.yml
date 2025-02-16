@@ -12,14 +12,6 @@ on:
         branches:
             - '*'
 
-env:
-    TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ORGANIZATION_NAME }}
-    TF_VAR_SNOWFLAKE_ACCOUNT_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ACCOUNT_NAME }}
-    TF_VAR_SNOWFLAKE_USER: ${{ secrets.TF_VAR_SNOWFLAKE_USER }}
-    TF_VAR_SNOWFLAKE_PASSWORD: ${{ secrets.TF_VAR_SNOWFLAKE_PASSWORD }}
-    TF_VAR_SNOWFLAKE_ROLE: ${{ secrets.TF_VAR_SNOWFLAKE_ROLE }}
-    TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
-
 jobs:
     validate_dev_environment:
         name: DEV - Validate Terraform
