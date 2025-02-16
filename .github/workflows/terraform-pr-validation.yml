@@ -15,13 +15,13 @@ env:
 
 jobs:
   validate_dev_environment:
-    name: DEV - Validate Terraform
+    name: DEV - Terraform Validate & Plan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Terraform Validate
+      - name: Terraform Validate & Plan
         uses: ./.github/actions/pr_pipeline_terraform_validate_and_plan
         with:
           environment: dev
