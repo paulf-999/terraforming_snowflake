@@ -18,6 +18,9 @@ jobs:
     name: DEV - Validate Terraform
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - uses: ./.github/actions/pr_pipeline_terraform_validate_and_plan
         with:
           environment: dev
