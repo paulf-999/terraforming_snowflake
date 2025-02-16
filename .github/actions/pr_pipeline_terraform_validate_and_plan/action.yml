@@ -8,12 +8,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v2
-
-    - name: Terraform Validate and Plan
-      run: cd terraform/environments/${{ inputs.environment }} && terraform init && terraform validate && terraform plan
+    - name: Terraform Validate
+      run: |
+        ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
       shell: bash
