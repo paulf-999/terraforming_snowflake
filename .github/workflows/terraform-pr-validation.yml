@@ -18,11 +18,6 @@ jobs:
     name: DEV - Validate Terraform
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Terraform Validate and Plan - Dev Environment
-        run: cd terraform/environments/dev && terraform init && terraform validate && terraform plan
+      - uses: ./.github/actions/pr_pipeline_terraform_validate_and_plan
+        with:
+          environment: dev
