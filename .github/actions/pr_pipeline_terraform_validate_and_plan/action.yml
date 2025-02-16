@@ -11,5 +11,5 @@ runs:
 
     - name: Terraform Validate
       run: |
-        ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
+        bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
       shell: bash
