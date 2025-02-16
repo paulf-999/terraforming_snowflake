@@ -13,6 +13,5 @@ runs:
       uses: hashicorp/setup-terraform@v2
 
     - name: Terraform Validate
-      run: |
-        bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
+      run: bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
       shell: bash
