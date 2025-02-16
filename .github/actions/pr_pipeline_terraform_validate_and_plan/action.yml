@@ -10,11 +10,9 @@ runs:
   steps:
 
     - name: Install Terraform
-      run: |
-        bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
+      run: bash ./src/cicd/scripts/common/install_terraform.sh
       shell: bash
 
     - name: Terraform Validate
-      run: |
-        bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
+      run: bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
       shell: bash
