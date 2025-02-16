@@ -1,9 +1,11 @@
 name: PR Validation
 
 on:
-  pull_request:
-    paths:
-      - "terraform/environments/dev/**/*.tf"
+    pull_request:
+        paths:
+            - terraform/**
+        branches:
+            - '*'
 
 env:
   TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ORGANIZATION_NAME }}
