@@ -3,7 +3,7 @@ description: "Validates and plans Terraform changes"
 inputs:
   environment:
     required: true
-    description: "The environment to validate"
+    description: "The name of the Terraform environment config"
 
 runs:
   using: "composite"
