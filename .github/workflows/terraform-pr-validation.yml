@@ -1,30 +1,39 @@
+---
 name: PR Validation
 
 on:
-  pull_request:
-    paths:
-      - 'terraform/*'
-    types:
-      - opened
-      - synchronize
-      - reopened
-    branches:
-      - '*'
+    pull_request:
+        paths:
+            - terraform/*
+        types:
+            - opened
+            - synchronize
+            - reopened
+        branches:
+            - '*'
+
+env:
+    TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ORGANIZATION_NAME }}
+    TF_VAR_SNOWFLAKE_ACCOUNT_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ACCOUNT_NAME }}
+    TF_VAR_SNOWFLAKE_USER: ${{ secrets.TF_VAR_SNOWFLAKE_USER }}
+    TF_VAR_SNOWFLAKE_PASSWORD: ${{ secrets.TF_VAR_SNOWFLAKE_PASSWORD }}
+    TF_VAR_SNOWFLAKE_ROLE: ${{ secrets.TF_VAR_SNOWFLAKE_ROLE }}
+    TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
 
 jobs:
-  validate_dev_environment:
-    name: DEV - Validate Terraform
-    runs-on: ubuntu-latest
+    validate_dev_environment:
+        name: DEV - Validate Terraform
+        runs-on: ubuntu-latest
     # if: github.event.pull_request.head.ref != github.event.pull_request.base.ref # Only run on PR events
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
+            - name: Set up Terraform
+              uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Validate and Plan - Dev Environment
-        run: cd terraform/environments/dev && terraform init && terraform validate && terraform plan
+            - name: Terraform Validate and Plan - Dev Environment
+              run: cd terraform/environments/dev && terraform init && terraform validate && terraform plan
 
   # validate_uat_environment:
   #  name: UAT - Validate Terraform
