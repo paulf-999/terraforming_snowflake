@@ -126,10 +126,10 @@ check_for_updates_on_remote_branch_and_merge() {
 
     # Check for incoming changes from the remote branch
     log_message "${DEBUG}" "Step 2: Check for incoming changes from the remote branch"
-    log_cmd_message "${DEBUG_DETAILS} "cmd: git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}"
+    log_cmd_message '${DEBUG_DETAILS} "cmd: git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}'
 
     # Merge any incoming changes from the remote branch
-    if git diff --quiet HEAD..origin/"${SOURCE_GIT_BRANCH_NAME}"; then
+    if git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}; then
         log_message ${NEUTRAL} "INFO: No incoming changes detected from the remote branch."
     else
         log_message "${DEBUG_DETAILS}" "Incoming changes detected from remote branch. Merging with local branch..."
@@ -137,7 +137,6 @@ check_for_updates_on_remote_branch_and_merge() {
         # Merge changes from remote and resolve conflicts (see functions_push_files_to_git.sh)
         merge_remote_branch
     fi
-
 }
 
 # Initial Git setup required for interacting with Git within the CI/CD job

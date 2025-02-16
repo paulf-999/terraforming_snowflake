@@ -1,0 +1,33 @@
+name: Code Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - terraform/**/*
+    # Exclude state files and backups
+  pull_request:
+    branches-ignore:
+      - '*'  # This ensures PRs do not trigger this workflow
+
+env:
+  TF_VAR_SNOWFLAKE_ORGANIZATION_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ORGANIZATION_NAME }}
+  TF_VAR_SNOWFLAKE_ACCOUNT_NAME: ${{ secrets.TF_VAR_SNOWFLAKE_ACCOUNT_NAME }}
+  TF_VAR_SNOWFLAKE_USER: ${{ secrets.TF_VAR_SNOWFLAKE_USER }}
+  TF_VAR_SNOWFLAKE_PASSWORD: ${{ secrets.TF_VAR_SNOWFLAKE_PASSWORD }}
+  TF_VAR_SNOWFLAKE_ROLE: ${{ secrets.TF_VAR_SNOWFLAKE_ROLE }}
+  TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
+
+jobs:
+  apply_dev_environment:
+    name: DEV - Apply Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Apply
+        uses: ./.github/actions/code_deployment_terraform_apply
+        with:
+          environment: dev
