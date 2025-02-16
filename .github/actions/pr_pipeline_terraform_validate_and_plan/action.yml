@@ -1,4 +1,4 @@
-name: "Terraform Validation"
+name: "Terraform Validate & Plan"
 description: "Validates and plans Terraform changes"
 inputs:
   environment:
@@ -14,4 +14,8 @@ runs:
 
     - name: Terraform Validate
       run: bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
+      shell: bash
+
+    - name: Terraform Plan
+      run: bash ./src/cicd/scripts/common/terraform_plan.sh ${{ inputs.environment }}
       shell: bash
