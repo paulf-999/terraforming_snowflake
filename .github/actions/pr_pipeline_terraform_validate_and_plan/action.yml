@@ -9,6 +9,14 @@ runs:
   using: "composite"
   steps:
 
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Install Terraform
+      run: |
+        bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
+      shell: bash
+
     - name: Terraform Validate
       run: |
         bash ./src/cicd/scripts/terraform_validate.sh ${{ inputs.environment }}
