@@ -4,7 +4,7 @@ name: PR Validation
 on:
     pull_request:
         paths:
-            - terraform/*
+            - terraform/**
         types:
             - opened
             - synchronize
