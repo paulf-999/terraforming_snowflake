@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - terraform/**/*
-    # Exclude state files and backups
   pull_request:
     branches-ignore:
       - '*'  # This ensures PRs do not trigger this workflow
@@ -20,14 +19,14 @@ env:
   TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
 
 jobs:
-  apply_dev_environment:
-    name: DEV - Apply Terraform
+  apply_prod_environment:
+    name: PROD - Apply Terraform
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Terraform Apply
+      - name: Terraform Validate & Plan
         uses: ./.github/actions/code_deployment_terraform_apply
         with:
-          environment: dev
+          environment: prod
