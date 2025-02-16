@@ -14,8 +14,8 @@ env:
   TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
 
 jobs:
-  validate_dev_environment:
-    name: DEV - Terraform Validate & Plan
+  validate_prod_environment:
+    name: PROD - Terraform Validate & Plan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,4 +24,4 @@ jobs:
       - name: Terraform Validate & Plan
         uses: ./.github/actions/pr_pipeline_terraform_validate_and_plan
         with:
-          environment: dev
+          environment: prod

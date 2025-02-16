@@ -8,6 +8,7 @@ inputs:
 runs:
   using: "composite"
   steps:
+
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
 

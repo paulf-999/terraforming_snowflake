@@ -49,7 +49,7 @@ push_changes() {
             # If RETRIES is not 0, pull the latest changes before pushing
             if [ $RETRIES -gt 0 ]; then
                 log_message "${DEBUG}" "Step 4.1: Pulling latest changes from remote to resolve potential conflicts."
-                log_cmd_message "${DEBUG_DETAILS} "cmd: git pull --rebase origin ${SOURCE_GIT_BRANCH_NAME}"
+                log_cmd_message "${DEBUG_DETAILS}" "cmd: git pull --rebase origin ${SOURCE_GIT_BRANCH_NAME}"
                 git pull --rebase origin "${SOURCE_GIT_BRANCH_NAME}" || {
                     log_message "${ERROR}" "Error: Pull failed. Retrying pull attempt... (Attempt #$((RETRIES + 1)))"
                     sleep $RETRY_DELAY
@@ -60,7 +60,7 @@ push_changes() {
 
             # Attempt the push
             log_message "${DEBUG}" "Step 4: Pushing the local changes to the remote Git branch."
-            log_cmd_message "${DEBUG_DETAILS} "cmd: git push origin HEAD:${SOURCE_GIT_BRANCH_NAME}"
+            log_cmd_message "${DEBUG_DETAILS}" "cmd: git push origin HEAD:${SOURCE_GIT_BRANCH_NAME}"
             git push origin HEAD:"${SOURCE_GIT_BRANCH_NAME}"
 
             if [ $? -eq 0 ]; then
@@ -71,7 +71,7 @@ push_changes() {
                 fi
                 return 0  # Exit the function if push is successful
             else
-                log_message "${ERROR}" "Error: Push failed. Retrying... (Attempt #$((RETRIES + 1)))"
+                log_message "${ERROR}" "Error: Push failed. Retrying... (Attempt $((RETRIES + 1)))"
                 sleep $RETRY_DELAY
                 RETRIES=$((RETRIES + 1))
             fi
@@ -90,7 +90,7 @@ push_changes() {
 commit_changes() {
     log_message "${DEBUG}" "Step 3: Check if any changes are detected for this env, as part of this code deployment."
 
-    log_cmd_message "${DEBUG_DETAILS} "cmd: git diff --quiet ${TF_STATE_FILE}"
+    log_cmd_message "${DEBUG_DETAILS} \"cmd: git diff --quiet ${TF_STATE_FILE}\""
 
     # no changes detected, skip commit
     if git diff --quiet "${TF_STATE_FILE}"; then
@@ -103,16 +103,16 @@ commit_changes() {
 
         # run 'git add' for both the terraform state file & it's corresponding backup file
         for FILE in "${TF_STATE_FILE}" "${TF_STATE_FILE}.backup"; do
-            log_cmd_message "${DEBUG_DETAILS} "cmd: git add ${FILE} -f"
+            log_cmd_message "${DEBUG_DETAILS}" "cmd: git add ${FILE} -f"
             git add "${FILE}" -f
         done
 
-        log_cmd_message "${DEBUG_DETAILS} "cmd: git commit -m 'Automated commit: Updated Terraform state file for ${ENV_NAME_UPPER} environment.'"
+        log_cmd_message "${DEBUG_DETAILS}" "cmd: git commit -m 'Automated commit: Updated Terraform state file for ${ENV_NAME_UPPER} environment.'"
         git commit -m "Automated commit: Updated Terraform state file for ${ENV_NAME_UPPER} environment."
 
         # set 'CHANGES_MADE' to true, to capture that Git has detected any new/changed files
         log_message "${DEBUG}" "Step 3.2: Flag changes have been made."
-        log_cmd_message "${DEBUG_DETAILS} "cmd: CHANGES_MADE=true"
+        log_cmd_message "${DEBUG_DETAILS}" "cmd: CHANGES_MADE=true"
         CHANGES_MADE=true
     fi
 }
@@ -126,7 +126,7 @@ check_for_updates_on_remote_branch_and_merge() {
 
     # Check for incoming changes from the remote branch
     log_message "${DEBUG}" "Step 2: Check for incoming changes from the remote branch"
-    log_cmd_message '${DEBUG_DETAILS} "cmd: git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}'
+    log_cmd_message "${DEBUG_DETAILS}" "cmd: git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}"
 
     # Merge any incoming changes from the remote branch
     if git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}; then
