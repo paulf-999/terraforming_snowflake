@@ -19,7 +19,9 @@ jobs:
   validate_dev_environment:
     name: DEV - Validate Terraform
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.head.ref, 'terraform/environments/dev/')
+    if: |
+      github.event.pull_request.changed_files > 0 &&
+      contains(join(github.event.pull_request.files.*.filename, ','), 'terraform/environments/dev/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -34,7 +36,9 @@ jobs:
   validate_uat_environment:
     name: UAT - Validate Terraform
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.head.ref, 'terraform/environments/uat/')
+    if: |
+      github.event.pull_request.changed_files > 0 &&
+      contains(join(github.event.pull_request.files.*.filename, ','), 'terraform/environments/uat/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,7 +53,9 @@ jobs:
   validate_prod_environment:
     name: PROD - Validate Terraform
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.head.ref, 'terraform/environments/prod/')
+    if: |
+      github.event.pull_request.changed_files > 0 &&
+      contains(join(github.event.pull_request.files.*.filename, ','), 'terraform/environments/prod/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
