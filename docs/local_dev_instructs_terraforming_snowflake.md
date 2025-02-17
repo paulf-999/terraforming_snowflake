@@ -4,8 +4,9 @@ Follow the steps described below to set up and run the Terraform commands (that 
 
 ## Prerequisites
 
-1. **Rename the `.env_template` file**
-    And populate the relevant environment variables.
+1. **Rename the `.env_template` file to `.env`**
+    - Rename `.env_template` (at the root of the repo) to `.env`
+    - And populate the relevant environment variables.
 
 ## Setup Steps
 
@@ -13,5 +14,6 @@ Follow the steps described below to set up and run the Terraform commands (that 
     From the root of the repo, run: `bash src/sh/install_terraform.sh`
 
 2. **Execute Terraform locally**:
-    - Execute the local bash script, i.e., run `bash local_terraform_dev.sh`
+    - Navigate to `terraform/environments/<ENV>`
+    - Then execute the local bash script, i.e., run `bash local_terraform_dev.sh`
     - Feel free to use Terraform commands as needed (e.g., `terraform init`, `terraform validate`, `terraform plan`, `terraform apply`, etc.).
