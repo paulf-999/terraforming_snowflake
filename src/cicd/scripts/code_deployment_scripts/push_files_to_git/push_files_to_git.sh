@@ -9,6 +9,8 @@
 #        <environment> - the Terraform environment (dev, uat, cicd, prod).
 #=======================================================================
 
+# shellcheck disable=SC2181
+
 #=======================================================================
 # Variables
 #=======================================================================
@@ -29,7 +31,7 @@ SOURCE_GIT_BRANCH_NAME=$1 # Source Git branch name (e.g., main)
 ENV_NAME=$2 # Target environment (e.g., dev, uat, prod)
 
 # other variables used
-ENV_NAME_UPPER=${ENV_NAME^^}
+ENV_NAME_UPPER=$(echo "$ENV_NAME" | tr '[:lower:]' '[:upper:]')
 TF_STATE_FILE="terraform/environments/${ENV_NAME}/terraform.tfstate" # the Terraform state file to be added, per-env
 CHANGES_MADE=false # flag used to detect whether Git has detected any new/changed files
 
@@ -90,15 +92,15 @@ push_changes() {
 commit_changes() {
     log_message "${DEBUG}" "Step 3: Check if any changes are detected for this env, as part of this code deployment."
 
-    log_cmd_message "${DEBUG_DETAILS} \"cmd: git diff --quiet ${TF_STATE_FILE}\""
+    log_cmd_message "${DEBUG_DETAILS}" "cmd: git diff --quiet ${TF_STATE_FILE}"
 
     # no changes detected, skip commit
     if git diff --quiet "${TF_STATE_FILE}"; then
-        log_message ${NEUTRAL} "INFO: No changes detected in ${TF_STATE_FILE}. Skipping commit."
+        log_message "${NEUTRAL}" "INFO: No changes detected in ${TF_STATE_FILE}. Skipping commit."
 
     # changes detected, commit them to the remote branch
     else
-        log_message ${NEUTRAL} "INFO: Changes detected in ${TF_STATE_FILE}!"
+        log_message "${NEUTRAL}" "INFO: Changes detected in ${TF_STATE_FILE}!"
         log_message "${DEBUG}" "Step 3.1: Run 'git add <filename>'"
 
         # run 'git add' for both the terraform state file & it's corresponding backup file
@@ -129,8 +131,8 @@ check_for_updates_on_remote_branch_and_merge() {
     log_cmd_message "${DEBUG_DETAILS}" "cmd: git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}"
 
     # Merge any incoming changes from the remote branch
-    if git diff --quiet HEAD..origin/${SOURCE_GIT_BRANCH_NAME}; then
-        log_message ${NEUTRAL} "INFO: No incoming changes detected from the remote branch."
+    if git diff --quiet HEAD..origin/"${SOURCE_GIT_BRANCH_NAME}"; then
+        log_message "${NEUTRAL}" "INFO: No incoming changes detected from the remote branch."
     else
         log_message "${DEBUG_DETAILS}" "Incoming changes detected from remote branch. Merging with local branch..."
 
