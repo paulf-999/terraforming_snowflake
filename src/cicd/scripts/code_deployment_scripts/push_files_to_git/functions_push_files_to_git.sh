@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2119,SC2120
 
 #=======================================================================
 # Variables
@@ -27,7 +28,7 @@ configure_git_user() {
 
 # Ensure we're on the correct branch
 checkout_branch() {
-    log_message "${DEBUG}" 'Ensuring wee on branch: ${SOURCE_GIT_BRANCH_NAME}'
+    log_message "${DEBUG}" "Ensuring we're on the correct branch: ${SOURCE_GIT_BRANCH_NAME}"
     log_cmd_message "${DEBUG_DETAILS}" "cmd: git checkout -B ${SOURCE_GIT_BRANCH_NAME}"
     git checkout -B "${SOURCE_GIT_BRANCH_NAME}" || {
         log_message "${ERROR}" "Error: Failed to checkout or create the branch ${SOURCE_GIT_BRANCH_NAME}."
@@ -61,7 +62,7 @@ resolve_git_merge_conflicts() {
             log_message "${DEBUG}" "Importing remote version for unedited file: ${conflicted_file}"
             log_cmd_message "${DEBUG_DETAILS}" "cmd: git checkout --theirs ${conflicted_file}"
             git checkout --theirs "${conflicted_file}"
-            log_cmd_message "${DEBUG_DETAILS}" "cmd: git add "${conflicted_file}""
+            log_cmd_message "${DEBUG_DETAILS}" "cmd: git add '${conflicted_file}'"
             git add "${conflicted_file}"
         else
             log_message "${DEBUG}" "Keeping local version for edited file: ${FILENAME}"

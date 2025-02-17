@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2181
 
 #=======================================================================
 # Script Name: push_files_to_git.sh
@@ -8,8 +9,6 @@
 #        <branch_name> - the target Git branch.
 #        <environment> - the Terraform environment (dev, uat, cicd, prod).
 #=======================================================================
-
-# shellcheck disable=SC2181
 
 #=======================================================================
 # Variables
