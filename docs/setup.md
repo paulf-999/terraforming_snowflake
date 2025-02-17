@@ -10,45 +10,6 @@
 
 ---
 
-## Introduction
-
-To set up this repository and get the Terraform pipeline working, you need to complete the following steps in order:
-
-1. **Populate the `.env` File**
-
-   Before proceeding, you need to create and populate a `.env` file with the necessary Snowflake credentials. This file is based on the provided template and is required for Terraform to authenticate and interact with Snowflake.
-
-   **Action**:
-
-   1. Navigate to the `src/templates/` directory.
-   2. Copy the `.env_template` file and rename it to `.env`.
-   3. Open the `.env` file and populate it with the required values.
-
-   **Command**:
-
-   ```sh
-   cp src/templates/.env_template .env
-   nano .env  # or use any text editor to update the values
-   ```
-
-2. **Install Terraform**
-
-   You will need to install Terraform on your machine.
-
-3. **Create Privileged Snowflake Roles**
-
-   A number of 'privileged' Snowflake roles will need to exist/be created for managing Snowflake resources such as databases, warehouses, and tasks.
-
-4. **Create Snowflake Service Account User & (Snowflake) Terraform Role**
-
-   To enable Terraform to interact & manage Snowflake resources, you’ll need a dedicated Snowflake-CICD service account user (`SVC_CICD`) and a Snowflake-Terraform functional role (`FUNC_TERRAFORM_ROLE`).
-
-5. **Configure CICD Pipeline**
-
-   Once the Snowflake user and functional role are configured, you can set up the CICD pipeline to automatically deploy changes and manage Terraform state.
-
----
-
 ## Step-by-Step Setup Instructions
 
 | **Step**                                                                   | **Description**                                                                                                                                                                                                                                                                                                                        | **Action & Commands**                                                                                                                                                      |
