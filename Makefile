@@ -33,6 +33,14 @@ test:
 clean:
 	@echo "${INFO}\nCalled makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}\n"
 
+demo1_terraform_cli:
+	@# 1. Update PROD db entry (terraform/environments/prod/main.tf)
+	@# 2. Run
+	@	  - terraform validate
+	@	  - terraform plan
+	@	  - terraform apply
+
+
 # Phony targets
 .PHONY: all deps install run test clean
 
