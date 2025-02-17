@@ -28,7 +28,7 @@ This object structure is replicated underneath `terraform/environments/<ENV>/`.
 
 ---
 
-## 4. Prerequisites for Repository Setup (For Repo Maintainers)
+## 4. (Repo Maintainers) Prerequisites for Repository Setup
 
 If you're setting up this repository for the first time or maintaining it, refer to the [setup prerequisites](docs/setup.md).
 
@@ -36,8 +36,6 @@ End-users can skip this section; it’s for maintainers only.
 
 ---
 
-## 5. Help
-
-**How do I set up a local Terraform dev environment?**
+## 5. How do I set up a Local Terraform Dev Environment?**
 
 See [Local Development Instructions for 'Terraforming Snowflake'](docs/local_dev_instructs_terraforming_snowflake.md).
