@@ -1,3 +1,3 @@
 resource "snowflake_database" "db_prod" {
-  name = "PROD1"
+  name = "PROD"
 }
