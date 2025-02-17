@@ -6,7 +6,7 @@ The instructions below describe the steps needed to create a new Snowflake datab
 
 ## 1. Background
 
-For an introduction to Terraform, see [Terraform - Background](docs/terraform_background/terraform_background.md).
+For an introduction to Terraform, see [Terraform - Background](terraform_background/terraform_background.md).
 
 ---
 
