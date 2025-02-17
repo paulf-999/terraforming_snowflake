@@ -25,6 +25,15 @@ repos:
       hooks:
           - id: check-merge-conflict # checks for files that contain merge conflict strings.
             name: Git checks - detect merge conflicts
+    # Terraform hooks
+    - repo: https://github.com/antonbabenko/pre-commit-terraform
+      rev: v1.97.3
+      hooks:
+          # - id: terraform_tflint
+          - id: terraform_fmt
+            exclude: (src/templates/.*)
+          - id: terraform_validate
+            exclude: (src/templates/.*|archive/.*)
     # YAML hooks
     - repo: https://github.com/adrienverge/yamllint.git
       rev: v1.30.0
