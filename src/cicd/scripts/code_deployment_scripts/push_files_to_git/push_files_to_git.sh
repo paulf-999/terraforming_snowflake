@@ -158,6 +158,10 @@ trap handle_interruption SIGINT  # Handle interruptions gracefully
 #=======================================================================
 # Main script logic
 #=======================================================================
+
+# Apply Terraform changes
+echo && print_section_header "${DEBUG_DETAILS}" "Upload (Updated) Terraform State File (terraform.tfstate)"
+
 log_message "${INFO}" "Script execution started for environment: ${ENV_NAME_UPPER}"
 
 # Do some initial Git setup for the CICD job before proceeding
