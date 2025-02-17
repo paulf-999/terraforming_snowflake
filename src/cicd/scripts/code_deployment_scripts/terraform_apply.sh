@@ -2,13 +2,21 @@
 
 # the environment name for the Terraform config
 ENV_NAME=${1}
-ENV_NAME_UPPER=${ENV_NAME^^}
+ENV_NAME_UPPER=$(echo "$ENV_NAME" | tr '[:lower:]' '[:upper:]')
 
 # Source common shell script variables and functions
 source src/sh/shell_utilities.sh
 
 # Source common terraform functions
 source src/cicd/scripts/common/terraform_utilities.sh
+
+# Source the .env file and export variables
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+else
+    echo "Error: .env file not found."
+    exit 1
+fi
 
 #=======================================================================
 # Functions
