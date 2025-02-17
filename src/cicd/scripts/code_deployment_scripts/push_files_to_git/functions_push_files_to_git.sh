@@ -26,6 +26,11 @@ configure_git_user() {
     }
 }
 
+# Configure Git to use the PAT for authentication
+configure_git_remote() {
+    git remote set-url origin "https://x-access-token:${GIT_PAT_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+}
+
 # Ensure we're on the correct branch
 checkout_branch() {
     log_message "${DEBUG}" "Ensuring we're on the correct branch: ${SOURCE_GIT_BRANCH_NAME}"

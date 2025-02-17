@@ -146,6 +146,9 @@ git_setup() {
     # Configure the Git user (see functions_push_files_to_git.sh)
     configure_git_user
 
+    # Configure the Git remote URL to use the PAT for authentication
+    configure_git_remote
+
     # Ensure we're on the correct branch (see functions_push_files_to_git.sh)
     checkout_branch
 }
