@@ -2,7 +2,7 @@
 
 # the environment name for the Terraform config
 ENV_NAME=${1}
-ENV_NAME_UPPER=${ENV_NAME^^}
+ENV_NAME_UPPER=$(echo "$ENV_NAME" | tr '[:lower:]' '[:upper:]')
 
 # Source common shell script variables and functions
 source src/sh/shell_utilities.sh
