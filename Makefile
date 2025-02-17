@@ -33,12 +33,19 @@ test:
 clean:
 	@echo "${INFO}\nCalled makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}\n"
 
+clean_demo:
+	rm -rf terraform/environments/prod/tfplan
+# -----------------------------------------------------------------------
+# Demo
+# -----------------------------------------------------------------------
 demo1_terraform_cli:
+	@Rename the DB
 	@# 1. Update PROD db entry (terraform/environments/prod/main.tf)
-	@# 2. Run
+	@# 2. Navigate to the dir (cd terraform/environments/prod)
+	@# 3. Run
 	@	  - terraform validate
-	@	  - terraform plan
-	@	  - terraform apply
+	@	  - terraform plan (bash terraform_plan.sh)
+	@	  - terraform apply (terraform apply -auto-approve tfplan)
 
 
 # Phony targets
@@ -46,3 +53,5 @@ demo1_terraform_cli:
 
 # .PHONY tells Make that these targets don't represent files
 # This prevents conflicts with any files named "all" or "clean"
+
+# cd ~/git/snowflake/terraforming_snowflake/terraform/environments/prod
