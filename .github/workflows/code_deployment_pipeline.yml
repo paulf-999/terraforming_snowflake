@@ -18,6 +18,7 @@ env:
     TF_VAR_SNOWFLAKE_PASSWORD: ${{ secrets.TF_VAR_SNOWFLAKE_PASSWORD }}
     TF_VAR_SNOWFLAKE_ROLE: ${{ secrets.TF_VAR_SNOWFLAKE_ROLE }}
     TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.TF_VAR_SNOWFLAKE_WAREHOUSE }}
+    GIT_PAT_TOKEN: ${{ secrets.GIT_PAT_TOKEN }}
 
 jobs:
     apply_prod_environment:
