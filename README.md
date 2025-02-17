@@ -36,6 +36,6 @@ End-users can skip this section; it’s for maintainers only.
 
 ---
 
-## 5. How do I set up a Local Terraform Dev Environment?**
+## 5. How do I set up a Local Terraform Dev Environment?
 
 See [Local Development Instructions for 'Terraforming Snowflake'](docs/local_dev_instructs_terraforming_snowflake.md).
