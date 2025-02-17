@@ -6,22 +6,11 @@ The instructions below describe the steps needed to create a new Snowflake datab
 
 ## 1. Background
 
-For an introduction to Terraform, see [Terraform - Background](#).
+For an introduction to Terraform, see [Terraform - Background](docs/terraform_background/terraform_background.md).
 
 ---
 
-## 2. Prerequisites
-
-### Clone the DMT Snowflake Scripts Repo
-
-You’ll need to clone the DMT Snowflake Scripts repo.
-Repo link: [DMT Snowflake Scripts](https://github.com/payroc/dmt-scripts-snowflake).
-
-For instructions on cloning a repository, see [How-to: Create a Clone of a Repository](#).
-
----
-
-## 3. Steps to Create a New Snowflake Object Using Terraform
+## 2. Steps to Create a New Snowflake Object Using Terraform
 
 > [!NOTE]
 > The Terraform Snowflake files are stored under the `terraform/` directory.
@@ -30,6 +19,7 @@ For instructions on cloning a repository, see [How-to: Create a Clone of a Repos
 
 1. Navigate to the `main` branch.
 2. Create a feature branch from `main`:
+
    ```bash
    git checkout -b feature/my_tf_db_eg
    ```
@@ -42,12 +32,14 @@ For instructions on cloning a repository, see [How-to: Create a Clone of a Repos
 
 1. Navigate to `terraform/environments/dev/2_account_level_objects`.
 2. As databases are account-level objects, create a new file:
+
    ```plaintext
    example_db.tf
    ```
 
 > [!NOTE]
 > Ensure your Terraform configuration contains the required `providers` block:
+
 ```hcl
 terraform {
   required_providers {
@@ -80,6 +72,7 @@ output "db_id" {
 ### **Step 3: Raise a Pull Request (PR) to the `main` Branch**
 
 #### 3.1: Raise a PR
+
 - Raise a PR in the GitHub UI to the `main` branch.
 
 #### 3.2: Verify PR Tests Pass
@@ -101,6 +94,7 @@ When raising a PR, two checks are performed:
 ### **Step 5: Verify the Database in Snowflake**
 
 - In the Snowflake UI, confirm that the newly created database exists:
+
   ```plaintext
   ZZZ_EXAMPLE_DB_<YOUR_INITIALS>
   ```
