@@ -41,11 +41,28 @@ clean_demo:
 demo1_terraform_cli:
 	@Rename the DB
 	@# 1. Update PROD db entry (terraform/environments/prod/main.tf)
-	@# 2. Navigate to the dir (cd terraform/environments/prod)
-	@# 3. Run
+	@# 2. Navigate to the dir in the terminal (cd terraform/environments/prod)
+	@# 3. Rm tfplan (rm -rf tfplan)
+	@# 4. Run
 	@	  - terraform validate
 	@	  - terraform plan (bash terraform_plan.sh)
 	@	  - terraform apply (terraform apply -auto-approve tfplan)
+
+demo2_cicd:
+	@Rename the DB
+	@# 1. Update PROD db entry (terraform/environments/prod/main.tf)
+	@# 2. Navigate to the dir in the terminal (cd terraform/environments/prod)
+	@# 3. Git steps
+	@	  - git checkout -b feature/demo2_cicd
+	@	  - git add main.tf
+	@	  - git commit -m "Demo - renamed PROD db to ANALYTICS_PROD"
+	@	  - git push origin feature/demo2_cicd
+	@# 4. Create PR
+	@ 	  - Highlight commands
+	@# 5. Merge PR
+	@ 	  - Highlight commands
+	@     - Show renamed db
+	@     - Mention tfstate in repo - just for demo
 
 
 # Phony targets
