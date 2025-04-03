@@ -28,7 +28,13 @@ This object structure is replicated underneath `terraform/environments/<ENV>/`.
 
 ---
 
-## 4. (Repo Maintainers) Prerequisites for Repository Setup
+## 4. CI/CD Pipelines
+
+For more details about the CI/CD pipelines used in this repo, refer to the [CI/CD Pipelines Documentation](docs/cicd_pipelines.md).
+
+---
+
+## 5. (Repo Maintainers) Prerequisites for Repository Setup
 
 If you're setting up this repository for the first time or maintaining it, refer to the [setup prerequisites](docs/setup.md).
 
@@ -36,6 +42,6 @@ End-users can skip this section; it’s for maintainers only.
 
 ---
 
-## 5. How do I set up a Local Terraform Dev Environment?
+## 6. How do I set up a Local Terraform Dev Environment?
 
 See [Local Development Instructions for 'Terraforming Snowflake'](docs/local_dev_instructs_terraforming_snowflake.md).
