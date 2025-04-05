@@ -4,7 +4,7 @@ Described below are the two CI/CD pipelines used within the repo.
 
 ## Pull Request (PR) Pipeline
 
-![PR Pipeline](img/cicd/pr_pipeline.png)
+<img src="img/cicd/pr_pipeline.png" alt="PR Pipeline" width="600">
 
 ### Purpose:
 
@@ -26,6 +26,8 @@ The scripts used for this pipeline can be found here: [../.github/actions/pr_pip
 ## Code Deployment Pipeline
 
 ![Code Deployment Pipeline](img/cicd/code_deployment_pipeline.png)
+
+<img src="img/cicd/code_deployment_pipeline.png" alt="Code Deployment Pipeline" width="600">
 
 ### Purpose:
 
