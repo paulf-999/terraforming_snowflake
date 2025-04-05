@@ -40,7 +40,7 @@ The scripts used for this pipeline can be found here: [../.github/actions/pr_pip
 
 1. **`terraform init`**: Runs `terraform init` command to initialise the Terraform project.
 2. **`terraform plan`**: Runs `terraform plan` command to generate an execution plan for the proposed changes.
-3. **`terraform apply`**: Applies the Terraform changes.
+3. **`terraform apply`**: Runs `terraform apply` to apply the Terraform changes.
 4. **Push Terraform State**: Updates the Terraform state file via a bash script.
 
 The scripts used for this pipeline can be found here: [../.github/actions/code_deployment_terraform_apply/action.yml](../.github/actions/code_deployment_terraform_apply/action.yml).
