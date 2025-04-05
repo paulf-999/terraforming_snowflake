@@ -19,7 +19,7 @@ Described below are the two CI/CD pipelines used within the repo.
 2. **Terraform Validate**: Runs the `terraform_validate.sh` script to validate the Terraform config files.
 3. **Terraform Plan**: Executes the `terraform_plan.sh` script to generate an execution plan for the proposed changes.
 
-The scripts used for this pipeline can be found here[../.github/actions/pr_pipeline_terraform_validate_and_plan/action.yml](../.github/actions/pr_pipeline_terraform_validate_and_plan/action.yml).
+The scripts used for this pipeline can be found here [../.github/actions/pr_pipeline_terraform_validate_and_plan/action.yml](../.github/actions/pr_pipeline_terraform_validate_and_plan/action.yml).
 
 ---
 
