@@ -25,8 +25,6 @@ The scripts used for this pipeline can be found here: [../.github/actions/pr_pip
 
 ## Code Deployment Pipeline
 
-![Code Deployment Pipeline](img/cicd/code_deployment_pipeline.png)
-
 <img src="img/cicd/code_deployment_pipeline.png" alt="Code Deployment Pipeline" width="600">
 
 ### Purpose:
