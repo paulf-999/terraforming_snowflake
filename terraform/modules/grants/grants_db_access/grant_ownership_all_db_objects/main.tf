@@ -1,55 +1,56 @@
-# Grant OWNERSHIP of all specified DB object types (e.g., TABLES, SEQUENCES) to the target role
-resource "snowflake_grant_ownership" "grant_ownership_db_obj_types_to_role" {
-  # Loop through the list of object types to grant
-  for_each = toset(var.db_object_types)
+# Grant ownership of each of the Snowflake objects to the role desired role
+resource "snowflake_grant_ownership" "grant_ownership_db_objs_to_role" {
 
-  # Role that will receive ownership
-  account_role_name = var.role_name
+  for_each = toset(["SCHEMAS", "TABLES", "SEQUENCES"])
 
-  # Copy existing privileges to new owner
+  # Grant OWNERSHIP to the input role
+  account_role_name   = var.role_name
   outbound_privileges = "COPY"
 
   on {
     all {
-      # Type of objects to grant (plural)
       object_type_plural = each.key
-      # Limit to this database
-      in_database = var.db_name
+      in_database        = var.db_name
     }
   }
+
+  depends_on = [
+    # Schemas
+    var.schema_names
+  ]
 }
 
-# Grant OWNERSHIP of all schemas in the DB to the target role
+# Grant ownership of the db schemas
 resource "snowflake_grant_ownership" "grant_ownership_db_schemas_to_role" {
+
+  # Grant OWNERSHIP to the input role
   account_role_name = var.role_name
 
+  # of the all schemas in the input database
   on {
     all {
-      # Grant for all schemas in the database
       object_type_plural = "SCHEMAS"
       in_database        = var.db_name
     }
   }
 
-  # Run after object-level grants complete
-  depends_on = [
-    snowflake_grant_ownership.grant_ownership_db_obj_types_to_role
-  ]
+  # ensure the schemas are created before changing ownership
+  depends_on = [snowflake_grant_ownership.grant_ownership_db_objs_to_role]
 }
 
-# Grant OWNERSHIP of the database itself to the target role
+# Grant ownership of the db
 resource "snowflake_grant_ownership" "grant_ownership_db_to_role" {
+
+  # Grant OWNERSHIP to the input role
   account_role_name   = var.role_name
   outbound_privileges = "COPY"
 
+  # of the input database
   on {
-    # Grant for the database
     object_type = "DATABASE"
     object_name = var.db_name
   }
 
-  # Run after schema-level grants complete
-  depends_on = [
-    snowflake_grant_ownership.grant_ownership_db_schemas_to_role
-  ]
+  # Ensure all schemas and schema-level objects (tables, views, stored procedures, and functions) are created
+  depends_on = [snowflake_grant_ownership.grant_ownership_db_objs_to_role]
 }
