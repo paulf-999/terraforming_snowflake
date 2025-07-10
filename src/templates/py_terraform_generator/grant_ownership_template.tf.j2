@@ -1,0 +1,10 @@
+# Grant ownership of all objects within the {{ project }} DB to the {{ project }} DBA role
+module "grant_{{ project | lower }}_dba_role_ownership_of_{{ project | lower }}_db_objects" {
+  source = "../../../../../modules/grants/grants_db_access/grant_ownership_all_db_objects"
+
+  db_name      = snowflake_database.db_{{ project | lower }}_{{ env | lower }}.name
+  schema_names = keys(snowflake_schema.db_{{ project | lower }}_{{ env | lower }}_schemas)
+  role_name    = var.{{ env | lower }}_{{ project | lower }}_all_role
+
+  depends_on = [snowflake_database.db_{{ project | lower }}_{{ env | lower }}, snowflake_schema.db_{{ project | lower }}_{{ env | lower }}_schemas]
+}

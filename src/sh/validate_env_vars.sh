@@ -14,6 +14,17 @@ ENV_VARS_TO_VALIDATE=("SNOWFLAKE_ACCOUNT" "SNOWFLAKE_USER" "SNOWFLAKE_PASSWORD" 
 # Functions
 #=======================================================================
 
+# Function to validate the existence of an environment variable
+verify_env_var_exists() {
+    local env_var_name="$1"
+    local env_var_value="${!env_var_name}" # Retrieve the value of the environment variable
+
+    if [ -z "$env_var_value" ]; then
+        log_message ${ERROR} "Error: Environment variable '$env_var_name' is not set or is empty."
+        exit 1
+    fi
+}
+
 # Function to validate the existence of an .env file
 verify_env_file_exists() {
     if [ ! -f "$ENV_FILE" ]; then
@@ -33,19 +44,27 @@ validate_env_file() {
 }
 
 #=======================================================================
-# Main script logic
+# Main Script Logic
 #=======================================================================
 
-# Step 1: Verify .env file exists
-# echo -e "${DEBUG}1. Check if .env file exists.\n${COLOUR_OFF}"
-verify_env_file_exists
+# Check if the script is being executed directly or sourced
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    # Script is being executed directly
 
-# Load environment variables from .env file, once we know it now exists
-source .env
+    # Step 1: Verify the .env file exists
+    ENV_FILE="$1"
+    verify_env_file_exists "$ENV_FILE"
 
-# Step 2: validate .env file
-# echo -e "${DEBUG}2. Validate contents of .env file.${COLOUR_OFF}"
-validate_env_file
+    # Step 2: Load environment variables from the .env file
+    echo "Loading environment variables from '$ENV_FILE'..."
+    set -a
+    source "$ENV_FILE"
+    set +a
 
-# Print "Required environment variables found" message
-echo -e "${DEBUG}Required environment variables found.${COLOUR_OFF}"
+    # Step 3: Validate the .env file
+    echo "Validating contents of '$ENV_FILE'..."
+    validate_env_file
+
+    # Print success message
+    echo "Required environment variables found."
+fi

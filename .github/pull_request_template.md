@@ -12,9 +12,8 @@ Choose one:
 
 - [ ] **Feature**: A new feature or a change to an existing feature.
 - [ ] **Trivial change**: A *minor* change with little/no impact.
+- [ ] **Refactoring/housekeeping**: Restructuring existing code, or tidying up the git repo structure.
 - [ ] **Bugfix**: A *minor* bug or issue.
-- [ ] **Refactoring**: Restructuring existing code, or tidying up the git repo structure.
-- [ ] **Housekeeping**: Tidying up code/content within the git repo.
 - [ ] **Documentation**: Updates or adds documentation.
 
 ## :fire: Critical Changes

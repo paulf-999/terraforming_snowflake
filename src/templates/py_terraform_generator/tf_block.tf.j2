@@ -1,0 +1,13 @@
+resource "{{ resource_type }}" "{{ resource_name }}" {
+{%- for key, value in attributes.items() -%}
+  {%- if value is string %}
+  {{ key }} = "{{ value }}"
+  {%- elif value is boolean %}
+  {{ key }} = {{ "true" if value else "false" }}
+  {%- elif value is none %}
+  {# Skip None values #}
+  {%- else %}
+  {{ key }} = {{ value }}
+  {%- endif %}
+{%- endfor %}
+}
