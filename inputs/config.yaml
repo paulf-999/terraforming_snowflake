@@ -1,0 +1,15 @@
+---
+project: DQ
+environments:
+    - dev
+
+create_database: true
+schemas:
+    - DQ_PLATFORM
+    - DQ_DATA_LAKE
+
+warehouses:
+    - DQ
+
+functional_roles:
+    - MAINTAINER

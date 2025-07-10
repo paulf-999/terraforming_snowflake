@@ -30,28 +30,36 @@ file_exists() {
     [ -f "$1" ]
 }
 
+# Signal handler to catch interruptions (Ctrl+C)
+handle_interruption() {
+    print_info_message "Script execution aborted by the user."
+    exit 1
+}
+
+
+# ---------------------------------------------------
+# Logging functions
+# ---------------------------------------------------
+
+# Housekeeping function to log messages in a consistent format
 log_message() {
     local LOGGING_LEVEL="$1"
     local MESSAGE="$2"
     echo && echo -e "${LOGGING_LEVEL}${MESSAGE}${COLOUR_OFF}"
 }
 
+# TODO: remove this function & it's dependencies as it's a carbon copy of log_message()
 log_cmd_message() {
     local LOGGING_LEVEL="$1"
     local MESSAGE="$2"
     echo -e "${LOGGING_LEVEL}${MESSAGE}${COLOUR_OFF}"
 }
 
+# the same as log_message() function above, except it consistently logs a section header message
 print_section_header() {
     local LOG_LEVEL="$1"
     local MESSAGE_CONTENT="$2"
     echo -e "${LOG_LEVEL}#------------------------------------------------------------------------------------------------------------"
     echo -e "${LOG_LEVEL}# ${MESSAGE_CONTENT}"
     echo -e "${LOG_LEVEL}#------------------------------------------------------------------------------------------------------------${COLOUR_OFF}"
-}
-
-# Signal handler to catch interruptions (Ctrl+C)
-handle_interruption() {
-    print_info_message "Script execution aborted by the user."
-    exit 1
 }

@@ -1,0 +1,4 @@
+variable "{{ env | lower }}_{{ project | lower }}_all_role" {
+  description = "The name of the {{ project | upper }} db 'all' role"
+  type        = string
+}

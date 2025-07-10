@@ -1,0 +1,19 @@
+{%- if has_database -%}
+module "{{ project | lower }}_db" {
+  source    = "./2_account_level_objects/database/{{ project | lower }}"
+  providers = { snowflake = snowflake }
+
+  # Pass in a reference to the {{ project | lower }} {{ env | lower }} all role
+  {{ env | lower }}_{{ project | lower }}_all_role = module.roles_and_grants.{{ env | lower }}_{{ project | lower }}_all_role
+}
+{%- endif -%}
+
+{%- if has_database and has_warehouse %}
+
+{%- endif %}
+{% if has_warehouse %}
+module "{{ project | lower }}_warehouse" {
+  source    = "./2_account_level_objects/warehouse/{{ project | lower }}"
+  providers = { snowflake = snowflake }
+}
+{%- endif %}

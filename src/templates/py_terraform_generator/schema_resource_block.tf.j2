@@ -1,0 +1,16 @@
+# DB Schemas
+locals {
+  {{ local_name }} = [
+  {%- for schema in schemas %}
+    "{{ schema }}",
+  {%- endfor %}
+    "UTILITIES",
+    "TMP",
+  ]
+}
+
+resource "snowflake_schema" "db_{{ project | lower }}_{{ env | lower }}_schemas" {
+  for_each = toset(local.{{ local_name }})
+  database = snowflake_database.{{ database }}.name
+  name     = each.value
+}

@@ -1,0 +1,11 @@
+resource "snowflake_account_role" "role_{{ env | lower }}_{{ project | lower }}_all_role" {
+
+  name    = "{{ env | upper }}_{{ project | upper }}_ALL_ROLE"
+  comment = "Responsible for owning objects within the {{ env | lower }} {{ project | lower }} database"
+}
+
+resource "snowflake_account_role" "role_{{ env | lower }}_{{ project | lower }}_all_sel_role" {
+
+  name    = "{{ env | upper }}_{{ project | upper }}_ALL_SEL_ROLE"
+  comment = "Read-only equivalent of {{ env | upper }}_{{ project | upper }}_ALL_ROLE"
+}

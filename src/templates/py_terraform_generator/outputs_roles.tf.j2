@@ -1,0 +1,13 @@
+output "{{ env | lower }}_{{ project | lower }}_all_role" {
+  value = snowflake_account_role.role_{{ env | lower }}_{{ project | lower }}_all_role.name
+}
+
+output "{{ env | lower }}_{{ project | lower }}_all_sel_role" {
+  value = snowflake_account_role.role_{{ env | lower }}_{{ project | lower }}_all_sel_role.name
+}
+
+{%- for role in functional_roles %}
+output "{{ env | lower }}_{{ project | lower }}_func_{{ role | lower }}_role" {
+  value = snowflake_account_role.role_{{ env | lower }}_{{ project | lower }}_{{ role | lower }}_role.name
+}
+{%- endfor %}

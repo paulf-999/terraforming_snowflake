@@ -13,8 +13,8 @@ variable "SNOWFLAKE_USER" {
   type        = string
 }
 
-variable "SNOWFLAKE_PASSWORD" {
-  description = "The Snowflake password"
+variable "SNOWFLAKE_PRIVATE_KEY" {
+  description = "The private key for the Snowflake user"
   type        = string
   sensitive   = true
 }

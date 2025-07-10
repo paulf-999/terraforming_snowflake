@@ -55,7 +55,7 @@ Create a grants file for the new role (`terraform/environments/<ENV>/1_roles_and
 ```hcl
 # Default grants
 module "default_grants_for_<UPDATE>_sel_role" {
-  source    = "../../../modules/grants/default_grants_new_role"
+  source    = "../../../modules/grants/default_grants_new_role_v1"
   role_name = snowflake_account_role.role_<UPDATE>.name
 }
 

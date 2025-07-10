@@ -1,0 +1,3 @@
+resource "snowflake_account_role" "role_{{ env | lower }}_{{ project | lower }}_{{ role_name | lower }}_role" {
+  name    = "FUNC_{{ env | upper }}_{{ project | upper }}_{{ role_name | upper }}_ROLE"
+}
