@@ -20,6 +20,8 @@ Described below are the two CI/CD pipelines used within the repo.
 2. **`terraform validate`**: Runs `terraform validate` command to validate the Terraform config files.
 3. **`terraform plan`**: Runs `terraform plan` command to generate an execution plan for the proposed changes.
 
+The scripts used for this pipeline can be found here: [../.github/actions/pr_pipeline_terraform_validate_and_plan/action.yml](../.github/actions/pr_pipeline_terraform_validate_and_plan/action.yml).
+
 ---
 
 ## Code Deployment Pipeline
@@ -40,3 +42,5 @@ Described below are the two CI/CD pipelines used within the repo.
 2. **`terraform plan`**: Runs `terraform plan` command to generate an execution plan for the proposed changes.
 3. **`terraform apply`**: Runs `terraform apply` to apply the Terraform changes.
 4. **Push Terraform State**: Updates the Terraform state file via a bash script.
+
+The scripts used for this pipeline can be found here: [../.github/actions/code_deployment_terraform_apply/action.yml](../.github/actions/code_deployment_terraform_apply/action.yml).
