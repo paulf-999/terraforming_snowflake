@@ -2,7 +2,7 @@
 
 | Step   | Action                                                                              | Description |
 |--------|-------------------------------------------------------------------------------------|-------------|
-| Step 1 | **Edit `main.tf` to declare your desired Snowflake resources.**                | As an example, see [terraform/environments/uat/main.tf](terraform/environments/uat/main.tf) which has been used to the simple `UAT_ALL_SEL_ROLE`. |
+| Step 1 | **Edit `main.tf` to declare your desired Snowflake resources.**                | As an example, see [../terraform/environments/uat/main.tf](../terraform/environments/uat/main.tf) which has been used to create a simple UAT database. |
 
 > [!NOTE]
 >
